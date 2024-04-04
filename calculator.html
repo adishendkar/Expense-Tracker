@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tax Calculator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+	<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+
+</head>
+
+<style>
+    body {
+        background-color: #fafafa;
+      }
+      html {
+        font-family: sans-serif;
+        line-height: 1.15;
+        -webkit-text-size-adjust: 100%;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      }
+      #outer {
+        width: 90%;
+        max-width: 600px;
+        background: #fff;
+        margin: 0 auto;
+      }
+      #cover {
+        border: 2px solid #111;
+        padding: 15px 0;
+      }
+      .main {
+        table-layout: fixed;
+        width: 94%;
+        border: 0;
+        border-collapse: collapse;
+        margin: 0 auto;
+      }
+      .main td {
+        padding: 0 8px;
+        vertical-align: middle;
+        border: 0;
+      }
+      .main input {
+        width: 100%;
+        border: 1px solid #ccc;
+        margin: 2px 0;
+        padding: 0 2%;
+        height: 22px;
+        text-align: right;
+      }
+      .ac {
+        text-align: center;
+      }
+      .b {
+        font-weight: bold;
+      }
+      .main select {
+        width: 100%;
+        border: 1px solid #ccc;
+        margin: 2px 0;
+        background: #fff;
+        height: 22px;
+      }
+      .w50 {
+        width: 50%;
+      }
+      .main button {
+        width: 100%;
+        font-weight: bold;
+        margin: 3px 0;
+      }
+</style>
+
+<body>
+    <script src="https://kit.fontawesome.com/86a2303dae.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar" class="active">
+            <h1>
+                <a href="index.html" class="logo">
+                    <img src="images/logo.png" alt="Logo" class="img-fluid">
+                </a>
+            </h1>
+            <ul class="list-unstyled components mb-5">
+                <li class="active">
+                    <a href="index.html"><span class="fa fa-home"></span> Dashboard</a>
+                </li>
+                <li>
+                    <a href="transaction.html"><span class="fa fa-exchange"></span> Add transactions</a>
+                </li>
+                <li>
+                    <a href="history.html"><span class="fa fa-sticky-note"></span> Transaction history</a>
+                    <li>
+                        <a href="calculator.html"><span class="fa fa-sticky-note"></span>Tax Calculator </a>
+                    </li>
+                </li>
+            </ul>
+            <!-- <div class="footer">
+                <p>
+                    Copyright &copy;
+                    <script>document.write(new Date().getFullYear());</script> All rights reserved | Aditya Shendkar
+                </p>
+            </div> -->
+        </nav>
+        <!-- Page Content  -->
+        <div id="content" class="p-4 p-md-5">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                    <button type="button" id="sidebarCollapse" class="btn btn-primary">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Toggle Menu</span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#" id="greeting">
+                                    Hi, User
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div id="outer">
+                <div class="ac b">Income Tax Calculator</div>
+                <div id="cover">
+                  <form name="it">
+                    <table class="main">
+                      <col class="w60" />
+                      <col class="w40" />
+                      <tr>
+                        <td>Opted for Sec. 115BAC</td>
+                        <td>
+                          <select id="opt" onchange="itax2122();">
+                            <option value="no" selected>No</option>
+                            <option value="yes">Yes</option>
+                          </select>
+                          <tr class="stat">
+                            <td>Select Status</td>
+                            <td>
+                              <select id="age">
+                                <option value="b60" selected>Resident < 60 years</option>
+                                <option value="a60">>= 60 < 80 years</option>
+                                <option value="a80">>= 80 years</option>
+                                <option value="huf">HUF / NRE</option>
+                              </select>
+                              <tr>
+                                <td>Income</td>
+                                <td>
+                                  <input type="number" id="tinc" />
+                                  <tr>
+                                    <td>Eligible Deductions</td>
+                                    <td>
+                                      <input type="number" id="ed" />
+                                      <tr>
+                                        <td><button type="reset">Reset</button></td>
+                                        <td>
+                                          <button type="button" onclick="itax2122();">
+                                            Submit
+                                          </button>
+                                          <tr>
+                                            <td>Taxable Income</td>
+                                            <td>
+                                              <input class="op" id="ninc" />
+                                              <tr>
+                                                <td>Income Tax</td>
+                                                <td>
+                                                  <input class="op" id="itax" />
+                                                  <tr>
+                                                    <td>Surcharge</td>
+                                                    <td>
+                                                      <input class="op" id="surch" />
+                                                      <tr>
+                                                        <td>Education Cess</td>
+                                                        <td>
+                                                          <input class="op" id="ecess" />
+                                                          <tr>
+                                                            <td>Total Tax Liability</td>
+                                                            <td>
+                                                              <input
+                                                                class="op"
+                                                                id="liab"
+                                                              />
+                                                            </td>
+                                                          </tr>
+                                                        </td>
+                                                      </tr>
+                                                    </td>
+                                                  </tr>
+                                                </td>
+                                              </tr>
+                                            </td>
+                                          </tr>
+                                        </td>
+                                      </tr>
+                                    </td>
+                                  </tr>
+                                </td>
+                              </tr>
+                            </td>
+                          </tr>
+                        </td>
+                      </tr>
+                    </table>
+                  </form>
+                </div>
+            </div>
+        </div>
+    
+    <script src="./js/calculator.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.2/dist/sweetalert2.all.min.js"></script>
+    <script>
+        var name = localStorage.getItem("name");
+        if (name != null) {
+            document.getElementById("greeting").innerHTML = "Hi, " + name;
+        }
+    </script>
+</body>
+
+</html>
